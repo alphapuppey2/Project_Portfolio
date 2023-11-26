@@ -5,13 +5,22 @@ import { useNavigate } from "react-router-dom";
 import LoginBox from "../component/LoginComp/LoginBox";
 import SideContent from "../component/LoginComp/SideContent";
 
-export default function Login(props: { linkTo?: string }) {
+
+const Login = () => {
+  const [user, changeUser] = useState("flex-row rounded-s-lg");
+
+  const userRef = useRef("flex-row rounded-s-lg");
+
+  console.log(user);
   return (
     <>
-      <div className="login container transition ease-in-out duration-100 grid gap-0 grid-cols-[minmax(0,2fr)_minmax(0,1fr)] w-full h-full">
-        <SideContent />
+      <div
+        className={`login ease-in-out duration-500`}>
         <LoginBox linkTo="/" />
       </div>
     </>
   );
 }
+
+
+export default Login

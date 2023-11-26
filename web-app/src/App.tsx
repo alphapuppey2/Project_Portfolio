@@ -10,7 +10,7 @@ function routesPage() {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<Login linkTo={"/"} />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
@@ -18,7 +18,7 @@ function routesPage() {
 
 function App() {
   return (
-    <div className="App border-box w-screen h-screen p-0 m-0">
+    <div className="App border-box w-screen h-screen flex justify-center items-center">
       {routesPage()}
     </div>
   );

@@ -16,7 +16,7 @@ const InputComp: FC<InputProps> = ({ className, disabled, ...props }) => {
     <input
       disabled={disabled}
       className={cn(
-        "bg-transparent placeholder:text-sky-900 focus:border-b-2 focus:outline-none p-2 w-full",
+        "bg-transparent transition ease-in-out duration-300 placeholder:text-sky-900 focus:border-b-2 focus:outline-none p-2 w-full",
         className
       )}
       {...props}

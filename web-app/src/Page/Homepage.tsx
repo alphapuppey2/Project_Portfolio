@@ -1,9 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
+import RoundSpinner from "../component/Loading/CircleLoad";
 
-export default function Homepage(){
-    return(
-        <div>
-            Homepage
+
+const Calendar = React.lazy(() => import("../component/Calendar"));
+const Dashboard = React.lazy(() => import("../component/Dashboard"))
+
+export default function Homepage() {
+    return (
+        <div className="animation-ease-in">
+            <Suspense fallback={<RoundSpinner />}>
+                {/* <Calendar /> */}
+                <Dashboard />
+            </Suspense>
         </div>
     )
 }
