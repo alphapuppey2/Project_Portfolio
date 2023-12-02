@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import InputComp from "../Input";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
-import { title } from "process";
 
 
 interface loginBoxProp {

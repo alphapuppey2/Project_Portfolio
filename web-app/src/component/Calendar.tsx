@@ -53,7 +53,7 @@ const Calendar: FC<CalendarProps> = ({ theme }) => {
 
     return (
         <>
-            <div className="container p-2 bg-blue-400">
+            <div className="container p-2 bg-blue-400 w-fit h-fit">
                 <div className="grid grid-cols-3 place-items-center m-2">
                     <Button className="bg-transparent text-zinc-500 hover:bg-transparent hover:text-zinc-800" onClick={prevMonth}>{month[monthNdx - 1 === -1 ? 11 : monthNdx - 1]}</Button>
                     <span className="h-fit w-fit p-3 bg-blue-300 md:w-64 sm:w-20 min-w-20 w-64 uppercase font-bold ">{month[monthNdx]}  {year}</span>
