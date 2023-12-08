@@ -9,6 +9,7 @@ function cn(...inputs: ClassValue[]) {
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disable?: boolean;
   children?: React.ReactNode;
+
 }
 
 const Button: FC<ButtonProps> = ({

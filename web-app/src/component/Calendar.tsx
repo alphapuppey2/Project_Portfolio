@@ -17,8 +17,6 @@ const Calendar: FC<CalendarProps> = ({ theme }) => {
     const onLookPrevDate = useRef((new Date(year, monthNdx, 0).getDate()) - (firstDate));
     const onLookNextDate = useRef(1);
 
-    console.log(firstDate)
-
     useEffect(() => {
         setFirstDate(new Date(year, monthNdx, 1).getDay());
         setLastDate(new Date(year, monthNdx + 1, 0).getDate())
@@ -28,8 +26,6 @@ const Calendar: FC<CalendarProps> = ({ theme }) => {
     day.current = 1;
     onLookPrevDate.current = (new Date(year, monthNdx, 0).getDate()) - (firstDate - 1);
     onLookNextDate.current = 1;
-
-    console.log(lastDate)
 
     const prevMonth = () => {
         setMonth((prev) => prev - 1);
@@ -49,6 +45,9 @@ const Calendar: FC<CalendarProps> = ({ theme }) => {
     }
 
 
+    const schedsAvail = [0, 1, 1, 1, 0, 0, 0]
+    const schedsAvail2 = [{ month: "december", week: [0, 1, 1, 1, 0, 0, 0] }]
+
 
 
     return (
@@ -66,22 +65,23 @@ const Calendar: FC<CalendarProps> = ({ theme }) => {
                                 <span key={i} className="font-medium bg-white">{e}</span>
                             )
                         })}
-                        {[...Array(35),].map((e, i) => {
-                            console.log(lastDate)
-                            console.log(day.current > lastDate)
+                        {[...Array(42),].map((e, i) => {
+
                             return (
                                 <>
                                     {i >= firstDate && day.current <= lastDate ?
-                                        <Button key={i} className={`rounded-none hover:bg-zinc-200 text-black h-20 text-left ${i < firstDate || day.current > lastDate ? "bg-zinc-300" : "bg-white"}`}
+                                        <Button key={i} className={`rounded-none hover:bg-zinc-200 text-black h-20 text-left ${i < firstDate || day.current > lastDate ? "bg-zinc-300" : schedsAvail[i % 7] === 1 ? "bg-red-500" : "bg-white"}`}
                                         >
                                             <div className="w-full h-full">
                                                 {i >= firstDate && day.current <= lastDate ? day.current++ : null}
                                             </div>
                                         </Button> :
-                                        <span className="bg-zinc-300 p-2 opacity-80 text-left w-full h-full" key={i}>
-                                            {day.current < lastDate ? onLookPrevDate.current++ : onLookNextDate.current++}
+                                        <Button key={i} className="rounded-none bg-zinc-300 text-black h-20 text-left">
+                                            <div className="w-full h-full">
+                                                {day.current < lastDate ? onLookPrevDate.current++ : onLookNextDate.current++}
+                                            </div>
                                             {/* {day.current > lastDate ? onLookNextDate.current++ : null} */}
-                                        </span>
+                                        </Button>
                                     }
                                 </>
                             )
