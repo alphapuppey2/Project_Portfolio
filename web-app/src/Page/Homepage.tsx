@@ -11,18 +11,13 @@ function RouteLocs() {
         <>
             <Routes>
                 <Route path="/dashboard" element={<Dashboard />}>Route</Route>
-                <Route path="/calendar" element={<Calendar />}>Route</Route>
+                <Route path="/calendar" element={<Calendar />} >Route</Route>
             </Routes>
         </>
     )
 };
-function showCalendar() {
-
-}
-
 
 export default function Homepage() {
-    const [viewCalendar, setCalendar] = useState(false);
     return (
         <div className="animation-ease-in w-full h-screen bg-green-400">
             <SideBar />
