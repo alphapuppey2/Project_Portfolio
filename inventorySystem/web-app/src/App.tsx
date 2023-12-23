@@ -14,7 +14,7 @@ function routesPage() {
 
     <Router>
       <Routes>
-        <Route path="/*" element={<Homepage />} />
+        <Route path="/dashboard" element={<Homepage />} />
         <Route path="/login" element={<Login />}/>
       </Routes>
     </Router>
@@ -25,11 +25,7 @@ function App() {
   // const redirect = useNavigate();
   return (
     <div className="App border-box w-screen h-screen flex justify-center items-center">
-      {/* {routesPage()} */}
-      <Suspense fallback={<Login />}>
-        <Homepage />
-      </Suspense>
-
+      {routesPage()}
     </div>
   );
 }

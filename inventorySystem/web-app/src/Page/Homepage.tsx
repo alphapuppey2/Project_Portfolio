@@ -1,8 +1,11 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import SideBar from "../component/SideBar";
+// import Dashboard from "./Dashboard";
+// import SideBar from "../component/SideBar";
 import Calendar from "../component/Calendar";
+
+const Dashboard = lazy(()=>import('./Dashboard'));
+const SideBar = lazy(()=>import('../component/SideBar'));
 
 
 
