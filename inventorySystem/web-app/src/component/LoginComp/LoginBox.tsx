@@ -1,16 +1,12 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, Suspense, useEffect, useState } from "react";
 import InputComp from "../Input";
 import Button from "../Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import RoundSpinner from "../Loading/CircleLoad";
 
 
-interface loginBoxProp {
-  linkTo: String,
-  thirdPartyAuth?: Boolean,
-  title?: String | undefined
-}
 
-const LoginBox: FC<loginBoxProp> = ({ linkTo, thirdPartyAuth, title }) => {
+const LoginBox  = () => {
   const [data, setData] = useState<{ username: String; password: String }>({
     username: "",
     password: "",
@@ -21,7 +17,6 @@ const LoginBox: FC<loginBoxProp> = ({ linkTo, thirdPartyAuth, title }) => {
   const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (data.username && data.password !== "") {
-
       next("/");
     } else {
       setValidation(true);
@@ -34,7 +29,7 @@ const LoginBox: FC<loginBoxProp> = ({ linkTo, thirdPartyAuth, title }) => {
       <div className="loginBox relative flex justify-center items-center p-4 h-[90vh] w-full ">
         <div className="flex justify-center items-center flex-col bg-white-800 overflow-hidden shadow-lg shadow-slate-700 rounded-2xl h-[60%] w-80 transition ease-in-out duration-1000 hover:ease-in ">
           <h1 className="text-xl p-[8px] uppercase font-bold font-poppins">
-            {title ? title : "login"}
+            login
           </h1>
           <div
             className={`bg-red-300 absolute top-[50px] border-2 border-red-500 rounded-lg w-64 p-5 text-red-600 ${validation ? "block" : "hidden"
@@ -68,7 +63,7 @@ const LoginBox: FC<loginBoxProp> = ({ linkTo, thirdPartyAuth, title }) => {
                   ? "border-b-2 border-red-500"
                   : "focus:placeholder-sky-900 focus:border-sky-900"
                   }`}
-                placeholder="password"
+                placeholder="Password"
                 onChange={(e) => {
                   setData((data) => ({ ...data, password: e.target.value }));
                 }}
@@ -87,14 +82,14 @@ const LoginBox: FC<loginBoxProp> = ({ linkTo, thirdPartyAuth, title }) => {
               {/* <button className="bg-sky-500 m-[10px] rounded-2xl w-fit p-2" onClick={clickHandler}>Sign in</button> */}
             </div>
             <div className="flex w-full flex-cols m-3 justify-around">
-              <span className="hover:text-sky-800 text-sm">
+              <Suspense fallback={<RoundSpinner></RoundSpinner>}>
+                <Link to={"/register"}>forget Password ?</Link>
+              </Suspense>
+              {/* <span className="hover:text-sky-800 text-sm">
                 forget Password ?
-              </span>
+              </span> */}
               <span className="hover:text-sky-800 text-sm"> Sign Up</span>
             </div>
-            {thirdPartyAuth ? <div className="divider w-2/3 border-t-2 ">
-              FACEBOOK X Gmail
-            </div> : null}
           </div>
         </div>
       </div>

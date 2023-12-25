@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-// import InputComp from "../component/Input";
-// import Button from "../component/Button";
-// import { useNavigate } from "react-router-dom";
 import LoginBox from "../component/LoginComp/LoginBox";
-// import SideContent from "../component/LoginComp/SideContent";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Auth } from "firebase/auth";
 
 
 const Login = () => {
@@ -14,7 +13,7 @@ const Login = () => {
     <>
       <div
         className={`login ease-in-out duration-500`}>
-        <LoginBox linkTo="/" />
+        <LoginBox />
       </div>
     </>
   );
