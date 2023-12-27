@@ -1,31 +1,31 @@
 import React, { Suspense, lazy, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Outlet, useNavigate } from "react-router-dom";
 // import Dashboard from "./Dashboard";
-// import SideBar from "../component/SideBar";
+import SideBar from "../component/SideBar";
+
 import Calendar from "../component/Calendar";
+import Button from "../component/Button";
+import { signOut } from "firebase/auth";
 
-const Dashboard = lazy(()=>import('./Dashboard'));
-const SideBar = lazy(()=>import('../component/SideBar'));
+import { auth } from '../configFirebase/firebase';
 
 
-
-function RouteLocs() {
-    return (
-        <>
-            <Routes>
-                <Route path="/dashboard" element={<Dashboard />}>Route</Route>
-                <Route path="/calendar" element={<Calendar />} >Route</Route>
-            </Routes>
-        </>
-    )
-};
 
 export default function Homepage() {
+    const navigate = useNavigate();
+    const Logout = async() =>{
+        try{
+            signOut(auth);
+            navigate("/login");
+        }catch(err){
+            console.error(err);
+        }
+    }
     return (
-        <div className="animation-ease-in w-full h-screen bg-green-400">
+        <div className="animation-ease-in w-full h-full p-0 bg-green-200">
             <SideBar />
-            <div className="absolute right-0 pt-5 pl-10 w-10/12 h-full flex flex-row justify-center bg-red-100">
-                <RouteLocs />
+            <div className="min-h-full w-full flex flex-row pl-[15rem] pt-10 bg-red-100">
+                <Outlet />
             </div>
 
         </div>

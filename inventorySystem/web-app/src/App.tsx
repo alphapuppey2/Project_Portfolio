@@ -1,34 +1,37 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 // import logo from "./logo.svg";
 import "./App.css";
 import Login from "./Page/Login";
 import Homepage from "./Page/Homepage";
 import Register from "./Page/Register";
+import Dashboard from "./Page/Dashboard";
+import Calendar from "./component/Calendar";
+import RoundSpinner from "./component/Loading/CircleLoad";
+import PageNotFound from "./Page/PageNotFound";
+import Equipments from "./Page/Equipments";
 
-// const Login = lazy(() => import('./Page/Login')); 
-// const Homepage = lazy(() => import('./Page/Homepage'));
-// const Register = lazy(() => import('./Page/Register'));
 
 
-function routesPage() {
-  return (
-
-    <Router>
-      <Routes>
-        <Route path="/dashboard" element={<Homepage />} />
-        <Route path="/" element={<Login />}/>
-        <Route path="/register" element={<Register />}/>
-      </Routes>
-    </Router>
-  );
-}
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route path="/login" element={<Login/>}></Route>
+      <Route path="/" element={<Homepage />}>
+        <Route path="signup" element={<Register/>}></Route>
+        <Route path="dashboard" element={<Dashboard/>}></Route>
+        <Route path="calendar" element={<Calendar/>}></Route>
+        <Route path="equipment" element={<Equipments/>}></Route>
+      </Route>
+      <Route path="*" element={<PageNotFound />}></Route>
+    </Route>
+  )
+)
 
 function App() {
-  // const redirect = useNavigate();
   return (
     <div className="App border-box w-screen h-screen flex justify-center items-center">
-      {routesPage()}
+      <RouterProvider router={router} />
     </div>
   );
 }
