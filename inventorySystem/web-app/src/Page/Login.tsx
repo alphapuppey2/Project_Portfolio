@@ -1,12 +1,12 @@
-import React, { FormEvent, FormEventHandler, Suspense, useEffect, useRef, useState } from "react";
-import LoginBox from "../component/LoginComp/LoginBox";
-
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../configFirebase/firebase';
+import React, { Suspense,  useState } from "react";
 import RoundSpinner from "../component/Loading/CircleLoad";
-import { FormProps, Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../component/Button";
 import InputComp from "../component/Input";
+
+import {signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../configFirebase/firebase';
+
 
 
 const Login = () => {
@@ -62,7 +62,7 @@ const Login = () => {
                   name="user"
                   id="email"
                   type="email"
-                  className={`tracking-widest border-b-2 border-sky-300 ${validation
+                  className={`w-full tracking-widest border-b-2 border-sky-300 ${validation
                     ? "border-b-2 border-red-500"
                     : "focus:border-b-2 focus:border-sky-900"
                     }`}
@@ -80,7 +80,7 @@ const Login = () => {
                 name="pass"
                 id="pass"
                 type="password"
-                className={`tracking-widest border-b-2 border-sky-300 ${validation
+                className={`w-full tracking-widest border-b-2 border-sky-300 ${validation
                   ? "border-b-2 border-red-500"
                   : "focus:placeholder-sky-900 focus:border-sky-900"
                   }`}
@@ -100,13 +100,13 @@ const Login = () => {
               {/* <button className="bg-sky-500 m-[10px] rounded-2xl w-fit p-2" onClick={clickHandler}>Sign in</button> */}
             </div>
             <div className="flex w-full flex-cols m-3 justify-around">
+              <span className="hover:text-sky-800 text-sm"> Forgot password</span>
               <Suspense fallback={<RoundSpinner />}>
-                <Link to={"/register"}>forget Password ?</Link>
+                <Link to={"/signup"}>Sign up</Link>
               </Suspense>
               {/* <span className="hover:text-sky-800 text-sm">
                 forget Password ?
               </span> */}
-              <span className="hover:text-sky-800 text-sm"> Sign Up</span>
             </div>
           </form>
         </div>

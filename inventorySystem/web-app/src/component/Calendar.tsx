@@ -8,7 +8,7 @@ interface CalendarProps {
 
 const Calendar: FC<CalendarProps> = ({ theme }) => {
     const month = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const weeks = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const weeks = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
     const day = useRef(1);
     const [year, setYear] = useState(new Date().getFullYear());
     const [monthNdx, setMonth] = useState(new Date().getMonth());
@@ -45,24 +45,19 @@ const Calendar: FC<CalendarProps> = ({ theme }) => {
     }
 
 
-    const schedsAvail = [0, 1, 1, 1, 0, 0, 0]
-    const schedsAvail2 = [{ month: "december", week: [0, 1, 1, 1, 0, 0, 0] }]
-
-
-
     return (
         <>
-            <div className="container p-2 bg-blue-400 w-full h-fit">
-                <div className="grid grid-cols-3 place-items-center m-2">
+            <div className="container bg-blue-400 p-2 w-fit h-fit">
+                <div className="grid grid-cols-3 place-items-center w-[30rem] m-2">
                     <Button className="bg-transparent text-zinc-500 hover:bg-transparent hover:text-zinc-800" onClick={prevMonth}>{month[monthNdx - 1 === -1 ? 11 : monthNdx - 1]}</Button>
-                    <span className="h-fit w-fit p-3 bg-blue-300 md:w-64 sm:w-20 min-w-20 w-64 uppercase font-bold ">{month[monthNdx]}  {year}</span>
+                    <span className="p-3 bg-blue-300 uppercase font-bold ">{month[monthNdx]}  {year}</span>
                     <Button className="bg-transparent text-zinc-500 hover:bg-transparent hover:text-zinc-800" onClick={nextMonth}>{month[monthNdx + 1 === 12 ? 0 : monthNdx + 1]}</Button>
                 </div>
                 <div>
-                    <div className="week grid grid-cols-7 gap-1 bg-blue-400">
+                    <div className="week grid grid-cols-7 gap-1 w-full bg-blue-400">
                         {weeks.map((e, i) => {
                             return (
-                                <span key={i} className="font-medium bg-white">{e}</span>
+                                <span key={i} className="font-medium bg-white text-23">{e}</span>
                             )
                         })}
                         {[...Array(42),].map((e, i) => {
@@ -70,13 +65,13 @@ const Calendar: FC<CalendarProps> = ({ theme }) => {
                             return (
                                 <div key={i}>
                                     {i >= firstDate && day.current <= lastDate ?
-                                        <Button key={i} className={`rounded-none w-full hover:bg-zinc-200 text-black h-20 text-left ${i < firstDate || day.current > lastDate ? "bg-zinc-300" : schedsAvail[i % 7] === 1 ? "bg-red-500" : "bg-white"}`}
+                                        <Button key={i} className={`rounded-none w-full h-full hover:bg-zinc-200 text-black text-center ${i < firstDate || day.current > lastDate ? "bg-zinc-300" : "bg-white"}`}
                                         >
                                             <div className="w-full h-full">
                                                 {i >= firstDate && day.current <= lastDate ? day.current++ : null}
                                             </div>
                                         </Button> :
-                                        <Button key={i} className="rounded-none  w-full bg-zinc-300 text-black h-20 text-left">
+                                        <Button key={i} className="rounded-none w-full bg-zinc-300 text-slate-400 text-center hover:bg-zinc-300" disabled>
                                             <div className="w-full h-full">
                                                 {day.current < lastDate ? onLookPrevDate.current++ : onLookNextDate.current++}
                                             </div>

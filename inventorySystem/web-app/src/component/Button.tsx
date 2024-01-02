@@ -22,7 +22,7 @@ const Button: FC<ButtonProps> = ({
     <button
       disabled={disabled}
       className={cn(
-        "p-2 font-semibold rounded-xl text-white bg-cyan-500 hover:bg-cyan-500/75 animation-ease-in-out duration-150 uppercase",
+        "w-auto h-auto p-2 font-semibold rounded-xl text-white bg-cyan-500 hover:bg-cyan-500/75 animation-ease-in-out duration-150 uppercase",
         className
       )}
       {...props}

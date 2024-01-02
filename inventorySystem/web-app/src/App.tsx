@@ -10,6 +10,7 @@ import Calendar from "./component/Calendar";
 import RoundSpinner from "./component/Loading/CircleLoad";
 import PageNotFound from "./Page/PageNotFound";
 import Equipments from "./Page/Equipments";
+import EmployeeSheds from "./Page/EmployeeSheds";
 
 
 
@@ -17,10 +18,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/login" element={<Login/>}></Route>
+        <Route path="/signup" element={<Register/>}></Route>
       <Route path="/" element={<Homepage />}>
-        <Route path="signup" element={<Register/>}></Route>
         <Route path="dashboard" element={<Dashboard/>}></Route>
-        <Route path="calendar" element={<Calendar/>}></Route>
+        <Route path="employee" element={<EmployeeSheds/>}></Route>
         <Route path="equipment" element={<Equipments/>}></Route>
       </Route>
       <Route path="*" element={<PageNotFound />}></Route>
@@ -29,6 +30,9 @@ const router = createBrowserRouter(
 )
 
 function App() {
+
+
+
   return (
     <div className="App border-box w-screen h-screen flex justify-center items-center">
       <RouterProvider router={router} />
